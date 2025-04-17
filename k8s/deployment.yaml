@@ -2,8 +2,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: draanapaula-website
-  namespace: draanapaula
+  name: draanapaula-web
+  namespace: est-web
 spec:
   replicas: 3
   selector:
@@ -15,8 +15,8 @@ spec:
         app: draanapaula-website
     spec:
       containers:
-      - name: draanapaula-website
-        image: ${DOCKER_HUB_USERNAME}/draanapaula:latest
+      - name: draanapaula-web
+        image: faelsouz/dranapaula-web:v1.0.0
         ports:
         - containerPort: 80
         resources:
