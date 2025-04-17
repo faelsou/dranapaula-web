@@ -50,12 +50,16 @@ jobs:
     - name: Set up kubectl
       uses: azure/setup-kubectl@v3
       
-    - name: Configure Kubernetes config
+#    - name: Configure Kubernetes config
+#      run: |
+#        mkdir -p $HOME/.kube/
+#        echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+#        chmod 600 $HOME/.kube/config
+    - name: Configurar KUBECONFIG
       run: |
-        mkdir -p $HOME/.kube/
-        echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
-        chmod 600 $HOME/.kube/config
-    
+        mkdir -p ~/.kube
+        echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+        
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f k8s/namespace.yaml
