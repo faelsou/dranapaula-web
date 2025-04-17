@@ -43,7 +43,7 @@ jobs:
       
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
     
@@ -60,10 +60,34 @@ jobs:
         mkdir -p ~/.kube
         echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
         
-    - name: Deploy to Kubernetes
+        - name: Atualizar imagem no Deployment
+        run: |
+          kubectl set image deployment/estetica-app \
+            estetica-app=faelsouz/dra-ana-paula:latest \
+            -n est-app
+
+    - name: Aguardar rollout do Deployment
       run: |
-        kubectl apply -f k8s/namespace.yaml
-        kubectl apply -f k8s/deployment.yaml
-        kubectl apply -f k8s/service.yaml
-        kubectl apply -f k8s/ingress.yaml
-        kubectl apply -f k8s/hpa.yaml
+        kubectl rollout status deployment/estetica-app -n est-app
+    - name: Verificar pods (debug)
+      run: kubectl get pods -n est-app
+    - name: Port-forward para localhost:8080
+      run: |
+        kubectl port-forward svc/estetica-app-service 8080:80 -n est-app &
+        sleep 5
+
+    - name: Esperar app responder
+      run: |
+        APP_URL="http://localhost:8080"
+        echo "Esperando a aplicação ficar disponível em $APP_URL..."
+        for i in {1..10}; do
+          if curl -s $APP_URL > /dev/null; then
+            echo "Aplicação está online!"
+            exit 0
+          else
+            echo "Tentando novamente..."
+            sleep 5
+          fi
+        done
+        echo "Aplicação não respondeu!"
+        exit 1
