@@ -1,0 +1,40 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: draanapaula-website
+  namespace: draanapaula
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: draanapaula-website
+  template:
+    metadata:
+      labels:
+        app: draanapaula-website
+    spec:
+      containers:
+      - name: draanapaula-website
+        image: ${DOCKER_HUB_USERNAME}/draanapaula:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
