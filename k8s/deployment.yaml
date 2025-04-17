@@ -8,11 +8,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: draanapaula-website
+      app: draanapaula-web
   template:
     metadata:
       labels:
-        app: draanapaula-website
+        app: draanapaula-web
     spec:
       containers:
       - name: draanapaula-web

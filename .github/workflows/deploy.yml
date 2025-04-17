@@ -59,16 +59,17 @@ jobs:
       run: |
         mkdir -p ~/.kube
         echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
-        
-        - name: Atualizar imagem no Deployment
-        run: |
-          kubectl set image deployment/estetica-app \
-            estetica-app=faelsouz/dra-ana-paula:latest \
-            -n est-app
+    
+    - name: Atualizar imagem no Deployment
+      run: |
+        kubectl set image deployment/draanapaula-web \
+          draanapaula-web=faelsouz/dra-ana-paula:latest \
+          -n est-web
+
 
     - name: Aguardar rollout do Deployment
       run: |
-        kubectl rollout status deployment/estetica-app -n est-app
+        kubectl rollout status deployment/draanapaula-web -n est-web
     - name: Verificar pods (debug)
       run: kubectl get pods -n est-app
     - name: Port-forward para localhost:8080
