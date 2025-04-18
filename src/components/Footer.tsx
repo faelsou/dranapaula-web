@@ -59,7 +59,7 @@ const Footer = () => {
           <div className="md:col-span-1">
             <h4 className="font-montserrat font-medium text-lg mb-6">Contato</h4>
             <ul className="space-y-3 text-neutral-400">
-              <li>+55 (11) 99999-9999</li>
+              <li>+55 (11) 96447-8967</li>
               <li>contato@facetech.com.br</li>
               <li>Av. Paulista, 1000 - Bela Vista<br />São Paulo, SP - 01310-100</li>
             </ul>
@@ -68,7 +68,7 @@ const Footer = () => {
         
         <div className="mt-12 pt-6 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-neutral-400 text-sm">
-            &copy; {new Date().getFullYear()} DRA ANA PAULA. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} Dra. Ana Paula. Todos os direitos reservados.
           </p>
           <div className="mt-4 md:mt-0 flex space-x-6">
             <a href="#" className="text-neutral-400 hover:text-white transition-colors text-sm">
