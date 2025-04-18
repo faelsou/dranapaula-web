@@ -62,8 +62,8 @@ jobs:
     
     - name: Atualizar imagem no Deployment
       run: |
-        kubectl set image deployment/draanapaula-web \
-          draanapaula-web=faelsouz/dra-ana-paula:latest \
+        kubectl set image deployment/dranapaula-web \
+          dranapaula-web=faelsouz/dra-ana-paula:latest \
           -n est-web
 
     - name: Aguardar rollout do Deployment
