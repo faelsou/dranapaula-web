@@ -70,10 +70,10 @@ jobs:
       run: |
         kubectl rollout status deployment/dranapaula-web -n est-web
     - name: Verificar pods (debug)
-      run: kubectl get pods -n est-app
+      run: kubectl get pods -n est-web
     - name: Port-forward para localhost:8080
       run: |
-        kubectl port-forward svc/estetica-app-service 8080:80 -n est-app &
+        kubectl port-forward svc/dranapaula-web-service 8080:80 -n est-web &
         sleep 5
 
     - name: Esperar app responder
