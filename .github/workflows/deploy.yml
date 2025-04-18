@@ -66,7 +66,6 @@ jobs:
           draanapaula-web=faelsouz/dra-ana-paula:latest \
           -n est-web
 
-
     - name: Aguardar rollout do Deployment
       run: |
         kubectl rollout status deployment/draanapaula-web -n est-web

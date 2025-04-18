@@ -1,13 +1,14 @@
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: draanapaula-web
+  name: dranapaula-web-service
   namespace: est-web
 spec:
   selector:
-    app: draanapaula-web
+    app: dranapaula-web
   ports:
-  - port: 80
-    targetPort: 80
-  type: ClusterIP
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080  # Defina uma porta externa acessível
+  type: NodePort

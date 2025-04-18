@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: draanapaula-web
+  name: dranapaula-web
   namespace: est-web
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: draanapaula-web
+      app: dranapaula-web
   template:
     metadata:
       labels:
-        app: draanapaula-web
+        app: dranapaula-web
     spec:
       containers:
-      - name: draanapaula-web
+      - name: dranapaula-web
         image: faelsouz/dranapaula-web:v1.0.0
         ports:
         - containerPort: 80

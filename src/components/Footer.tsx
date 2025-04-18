@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-1">
             <h2 className="text-2xl font-montserrat font-light tracking-widest mb-6">
-              DRA <span className="text-golden">ANA PAULA</span>
+              Dra <span className="text-golden">Ana Paula</span>
             </h2>
             <p className="text-neutral-400 mb-6">
               Tecnologia avançada para estética facial com resultados excepcionais e personalizados.

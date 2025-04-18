@@ -1,25 +1,24 @@
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: draanapaula-web
+  name: dranapaula-web
   namespace: est-web
   annotations:
-    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  ingressClassName: nginx
   tls:
   - hosts:
-    - draanapaulasoubeauty.com
+    - dranapaulasou.com
     secretName: draanapaula-tls
   rules:
-  - host: draanapaulasoubeauty.com
+  - host: dranapaulasou.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: draanapaula-web
+            name: dranapaula-web
             port:
               number: 80
