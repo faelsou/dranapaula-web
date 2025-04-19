@@ -17,6 +17,7 @@ spec:
       containers:
       - name: dranapaula-web
         image: faelsouz/dranapaula-web:v1.0.1
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:
