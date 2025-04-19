@@ -91,4 +91,10 @@ jobs:
   
       - name: Aguardar rollout do Deployment
         run: |
-          kubectl rollout status deployment/dran
+          if ! kubectl get deployment dranapaula-web -n est-web &> /dev/null; then
+            echo "❌ Deployment 'dranapaula-web' não encontrado no namespace 'est-web'"
+            exit 1
+          fi
+  
+          echo "⏳ Aguardando o rollout do deployment 'dranapaula-web'..."
+          kubectl rollout status deployment/dranapaula-web -n est-web
