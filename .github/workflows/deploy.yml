@@ -46,20 +46,26 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up kubectl
       uses: azure/setup-kubectl@v3
-      
-#    - name: Configure Kubernetes config
+
+#    - name: Configurar KUBECONFIG
 #      run: |
-#        mkdir -p $HOME/.kube/
-#        echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
-#        chmod 600 $HOME/.kube/config
-    - name: Configurar KUBECONFIG
+#        mkdir -p ~/.kube
+#        echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
+
+    - name: Garantir pelo menos 3 réplicas
       run: |
-        mkdir -p ~/.kube
-        echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
-    
+        CURRENT_REPLICAS=$(kubectl get deployment dranapaula-web -n est-web -o jsonpath='{.spec.replicas}')
+        echo "Réplicas atuais: $CURRENT_REPLICAS"
+        if [ "$CURRENT_REPLICAS" = "0" ]; then
+          echo "Atualizando para 3 réplicas..."
+          kubectl scale deployment dranapaula-web --replicas=3 -n est-web
+        else
+          echo "Quantidade de réplicas atual é suficiente. Não será alterada."
+        fi
+
     - name: Atualizar imagem no Deployment
       run: |
         kubectl set image deployment/dranapaula-web \
@@ -69,8 +75,10 @@ jobs:
     - name: Aguardar rollout do Deployment
       run: |
         kubectl rollout status deployment/dranapaula-web -n est-web
+
     - name: Verificar pods (debug)
       run: kubectl get pods -n est-web
+
     - name: Port-forward para localhost:8080
       run: |
         kubectl port-forward svc/dranapaula-web-service 8080:80 -n est-web &
