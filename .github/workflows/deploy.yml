@@ -66,16 +66,14 @@ jobs:
           echo "Quantidade de réplicas atual é suficiente. Não será alterada."
         fi
 
-    - name: Verificar a versão atual da imagem no deployment
-      id: get_current_image
+    - name: Verificar última versão da imagem
+      id: get_latest_image
       run: |
-        CURRENT_IMAGE=$(kubectl get deployment dranapaula-web -n est-web -o=jsonpath='{.spec.template.spec.containers[0].image}')
-        echo "Imagem atual no deployment: $CURRENT_IMAGE"
-        if [ "$CURRENT_IMAGE" == "faelsouz/dranapaula-web:${{ env.IMAGE_TAG }}" ]; then
-          echo "A imagem já está atualizada. Nenhuma ação necessária."
-          exit 0
-        fi
-        echo "A imagem precisa ser atualizada."
+          IMAGE_TAG=$(curl -s "https://hub.docker.com/v2/repositories/faelsouz/dranapaula-web/tags/" | grep -oP '"name": "\K([^"]+)' | head -n 1)
+          echo "Última versão da imagem: $IMAGE_TAG"
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+          echo "Imagem a ser utilizada: faelsouz/dranapaula-web:$IMAGE_TAG"
+      
 
     - name: Atualizar imagem no Deployment
       run: |
