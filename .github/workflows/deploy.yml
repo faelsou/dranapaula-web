@@ -47,6 +47,11 @@ jobs:
 
       - name: Set up kubectl
         uses: azure/setup-kubectl@v3
+      
+      - name: Baixar jq binário
+        run: |
+          curl -L -o /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+          chmod +x /usr/local/bin/jq  
 
       - name: Verificar última versão da imagem
         id: get_latest_image
@@ -65,20 +70,6 @@ jobs:
           else
             echo "Quantidade de réplicas atual é suficiente. Não será alterada."
           fi
-      
-      - name: Baixar jq binário
-        run: |
-          curl -L -o /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
-          chmod +x /usr/local/bin/jq
-        
-
-      - name: Verificar última versão da imagem
-        id: get_latest_image
-        run: |
-          IMAGE_TAG=$(curl -s "https://hub.docker.com/v2/repositories/faelsouz/dranapaula-web/tags/" | jq -r '.results[0].name')
-          echo "Última versão da imagem: $IMAGE_TAG"
-          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
-      
 
       - name: Atualizar imagem no Deployment
         run: |
