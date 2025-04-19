@@ -66,7 +66,7 @@ jobs:
           echo "Quantidade de réplicas atual é suficiente. Não será alterada."
         fi
 
-    - name: Verificar última versão da imagem
+    - name: Verificar última versão da imagem...
       id: get_latest_image
       run: |
           IMAGE_TAG=$(curl -s "https://hub.docker.com/v2/repositories/faelsouz/dranapaula-web/tags/" | grep -oP '"name": "\K([^"]+)' | head -n 1)
