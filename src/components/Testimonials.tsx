@@ -21,7 +21,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: 'Rubens de Souza',
+    name: 'Dra Ana Paula',
     role: 'Esteticista',
     image: 'https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     content: 'Os treinamentos oferecidos pela FaceTech transformaram minha carreira. A expertise compartilhada e as técnicas avançadas me permitiram oferecer um serviço premium aos meus clientes.',
