@@ -5,7 +5,7 @@ import { Star } from 'lucide-react';
 const testimonials = [
   {
     id: 1,
-    name: 'Ana Silva',
+    name: 'Rafael Souza',
     role: 'Cliente B2C',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     content: 'Minha experiência com o FaceTech foi incrível. Os resultados do tratamento com ácido hialurônico superaram minhas expectativas. Minha pele está radiante e com um aspecto muito mais saudável.',
@@ -13,7 +13,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: 'Dr. Carlos Mendes',
+    name: 'Dr. Joshua Oliveira Souza',
     role: 'Dermatologista Parceiro',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     content: 'Como profissional parceiro, posso atestar a qualidade dos equipamentos e produtos utilizados pelo FaceTech. A tecnologia de ponta faz toda diferença nos resultados que conseguimos oferecer aos pacientes.',
@@ -21,7 +21,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: 'Juliana Martins',
+    name: 'Rubens de Souza',
     role: 'Esteticista',
     image: 'https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80',
     content: 'Os treinamentos oferecidos pela FaceTech transformaram minha carreira. A expertise compartilhada e as técnicas avançadas me permitiram oferecer um serviço premium aos meus clientes.',
