@@ -64,11 +64,11 @@ jobs:
   
       - name: Garantir pelo menos 3 réplicas
         run: |
-          CURRENT_REPLICAS=$(kubectl get deployment dranapaula-web -n est-web -o jsonpath='{.spec.replicas}')
+          CURRENT_REPLICAS=$(kubectl get deployment dranapaula-web -n dra-web -o jsonpath='{.spec.replicas}')
           echo "Réplicas atuais: $CURRENT_REPLICAS"
           if [ "$CURRENT_REPLICAS" = "0" ]; then
             echo "Atualizando para 3 réplicas..."
-            kubectl scale deployment dranapaula-web --replicas=3 -n est-web
+            kubectl scale deployment dranapaula-web --replicas=3 -n dra-web
           else
             echo "Quantidade de réplicas atual é suficiente. Não será alterada."
           fi
